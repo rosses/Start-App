@@ -128,16 +128,8 @@ public class startApp extends CordovaPlugin {
 				callback.error("Incorrect params, array is not array object!");
 			}
 		} 
-		catch (JSONException e) {
-			callback.error("JSONException: " + e.getMessage());
-			e.printStackTrace();
-		}
-		catch (IllegalAccessException e) {
-			callback.error("IllegalAccessException: " + e.getMessage());
-			e.printStackTrace();
-		}
-		catch (ActivityNotFoundException e) {
-			callback.error("ActivityNotFoundException: " + e.getMessage());
+		catch (Exception e) {
+			callback.error("Exception: " + e.getMessage());
 			e.printStackTrace();
 		}
     }
