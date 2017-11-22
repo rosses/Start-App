@@ -170,10 +170,10 @@ public class startApp extends CordovaPlugin {
 				/* Extra fields for autentia app */
 
 				if(params.has("RUT")) {
-					LaunchIntent.setType(params.getInt("RUT"));	
+					LaunchIntent.putExtra("RUT",params.getInt("RUT"));	
 				}
 				if(params.has("DV")) {
-					LaunchIntent.setType(params.getString("DV"));	
+					LaunchIntent.putExtra("DV",params.getString("DV"));	
 				}
 
 				LaunchIntent.putExtra("INTENTOS", 3);
