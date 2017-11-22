@@ -122,7 +122,7 @@ public class startApp extends CordovaPlugin {
 				}
 				*/
 				
-				callback.success();
+				//callback.success();
 			}
 			else {
 				callback.error("Incorrect params, array is not array object!");
