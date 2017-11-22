@@ -275,21 +275,29 @@ public class startApp extends CordovaPlugin {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        JSONObject info = new JSONObject();
+        info.put("resultado", "UNKNOWN");
 
         try {
             if (resultCode == Activity.RESULT_OK) {
+            	info.put("resultado", "OK");
                 Bundle extras = data.getExtras();
-                JSONObject info = new JSONObject();
-                
+
                 if (extras != null) {
-                    for (String key : extras.keySet()) {
-                        info.put(key, extras.get(key).toString());
-                    }
+                	info.put("cdv", "extras is not null");
+                	String msg = "";
+	                for (Object obj : data.getExtras().keySet()) {
+	                    Object value = result.get(obj.toString());
+	                    msg = msg + String.format("%s : %s\n\n", new Object[]{key, value});
+	                    info.put(obj.toString(), value);
+	                }
+	                info.put("msg",msg);
                 }
-                
                 this.callbackContext.success(info);
-            } else {
-                this.callbackContext.error("Cancelled");
+            } 
+            else {
+            	info.put("resultado", "NO OK");
+                this.callbackContext.error(info);
             }
         } catch (Exception e) {
             e.printStackTrace();
