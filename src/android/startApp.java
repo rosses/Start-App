@@ -32,6 +32,9 @@ public class startApp extends CordovaPlugin {
 	public static final String TAG = "startApp";
     public startApp() { }
 
+	private boolean NO_PARSE_INTENT_VALS = false;
+    public CallbackContext callbackContext;
+
     /**
      * Executes the request and returns PluginResult.
      *
@@ -41,6 +44,9 @@ public class startApp extends CordovaPlugin {
      * @return                  True when the action was valid, false otherwise.
      */
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+
+    	this.callbackContext = callbackContext;
+    	
         if (action.equals("start")) {
             this.start(args, callbackContext);
         }
