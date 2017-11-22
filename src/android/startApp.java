@@ -127,7 +127,8 @@ public class startApp extends CordovaPlugin {
 				 * http://developer.android.com/intl/ru/reference/android/content/Intent.html#setAction%28java.lang.String%29
 				 */
 				if(params.has("action")) {
-					LaunchIntent.setAction(getIntentValueString(params.getString("action")));
+					//LaunchIntent.setAction(getIntentValueString(params.getString("action")));
+					LaunchIntent.setAction(params.getString("action"));
 				}
 
 				/**
