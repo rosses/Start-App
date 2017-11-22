@@ -115,8 +115,10 @@ public class startApp extends CordovaPlugin {
 					LaunchIntent.setType(params.getString("type"));	
 				}
 				
+				if(params.has("type")) {
+					LaunchIntent.setType(params.getString("type"));	
+				}
 
-				
 				/**
 				 * set data (uri)
 				 * http://developer.android.com/intl/ru/reference/android/content/Intent.html#setData%28android.net.Uri%29
@@ -152,6 +154,7 @@ public class startApp extends CordovaPlugin {
 				/**
 				 * set extra fields
 				 */
+				/*
 				if(!args.isNull(1)) {
 					extra = args.getJSONObject(1);
 					Iterator<String> iter = extra.keys();
@@ -162,7 +165,24 @@ public class startApp extends CordovaPlugin {
 						value = extra.getString(key);
 						LaunchIntent.putExtra(key, value);
 					}
+				}*/
+
+				/* Extra fields for autentia app */
+
+				if(params.has("RUT")) {
+					LaunchIntent.setType(params.getInt("RUT"));	
 				}
+				if(params.has("DV")) {
+					LaunchIntent.setType(params.getString("DV"));	
+				}
+
+				LaunchIntent.putExtra("INTENTOS", 3);
+				LaunchIntent.putExtra("COLOR_PRIMARY", "#FF9900");
+				LaunchIntent.putExtra("COLOR_PRIMARY_DARK", "#FF0000");
+				LaunchIntent.putExtra("TITLE", "ABASTIBLE HUELLA CHECK");
+				LaunchIntent.putExtra("SUBTITLE", "");
+				LaunchIntent.putExtra("SKIP_TERMS", false);
+				LaunchIntent.putExtra("PREVIRED", false);
 
 				/**
 				 * launch intent
