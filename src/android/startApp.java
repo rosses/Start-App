@@ -290,7 +290,6 @@ public class startApp extends CordovaPlugin {
                 	String msg = "";
 	                for (Object obj : data.getExtras().keySet()) {
 	                    Object value = extras.get(obj.toString());
-	                    msg = msg + String.format("%s : %s\n\n", new Object[]{key, value});
 	                    info.put(obj.toString(), value);
 	                }
 	                info.put("msg",msg);
