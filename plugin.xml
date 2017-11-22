@@ -21,6 +21,11 @@
             </feature>
         </config-file>
 
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+            <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+        </config-file>
+
         <source-file src="src/android/startApp.java" target-dir="src/com/lampa/startapp" />
     </platform>
 

@@ -96,7 +96,7 @@ public class startApp extends CordovaPlugin {
 				 * http://developer.android.com/intl/ru/reference/android/content/Intent.html#setAction%28java.lang.String%29
 				 */
 				if(params.has("action")) {
-					LaunchIntent.setAction(getIntentValueString(params.getString("action")));	
+					LaunchIntent.setAction(params.getString("action"));	
 				}
 				
 				/**
@@ -160,7 +160,7 @@ public class startApp extends CordovaPlugin {
 						key = iter.next();
 						
 						value = extra.getString(key);
-						LaunchIntent.putExtra(parseExtraName(key), value);
+						LaunchIntent.putExtra(key, value);
 					}
 				}
 
@@ -168,7 +168,7 @@ public class startApp extends CordovaPlugin {
 				 * launch intent
 				 */
 				if(params.has("intentstart") && "startActivityForResult".equals(params.getString("intentstart"))) {
-					cordova.getActivity().startActivityForResult(LaunchIntent, 1);
+					cordova.getActivity().startActivityForResult(LaunchIntent, 18);
 				}
 				if(params.has("intentstart") && "sendBroadcast".equals(params.getString("intentstart"))) {
 					cordova.getActivity().sendBroadcast(LaunchIntent);	
