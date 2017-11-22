@@ -269,6 +269,21 @@ public class startApp extends CordovaPlugin {
 		}
 	}
 	
+
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		Log.i(TAG, "requestCode");
+		Log.i(TAG, requestCode);
+		Log.i(TAG, "resultCode");
+		Log.i(TAG, resultCode);
+
+		String msg = "";
+        for (Object obj : data.getExtras().keySet()) {
+            Object value = result.get(obj.toString());
+            msg = msg + String.format("%s : %s\n\n", new Object[]{key, value});
+            Log.d(TAG, String.format("%s : %s", new Object[]{key, value}));
+        }
+
+	}
 	/**
 	 * getExtras
 	 */
