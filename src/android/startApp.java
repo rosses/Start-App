@@ -173,7 +173,7 @@ public class startApp extends CordovaPlugin {
 					LaunchIntent.putExtra("RUT",params.getInt("RUT"));	
 				}
 				if(params.has("DV")) {
-					LaunchIntent.putExtra("DV",params.getString("DV"));	
+					LaunchIntent.putExtra("DV", params.getString("DV").charAt(0));	
 				}
 
 				LaunchIntent.putExtra("INTENTOS", 3);
