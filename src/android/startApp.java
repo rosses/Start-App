@@ -110,8 +110,9 @@ public class startApp extends CordovaPlugin {
 				 * launch intent
 				 */
 				//if(params.has("intentstart") && "startActivityForResult".equals(params.getString("intentstart"))) {
-					cordova.setActivityResultCallback(this);
-					cordova.getActivity().startActivityForResult(LaunchIntent, 18);
+					//cordova.setActivityResultCallback(this);
+					//cordova.getActivity().startActivityForResult(LaunchIntent, 18);
+					cordova.startActivityForResult((CordovaPlugin) this, LaunchIntent, 18);
 				//}
 				/*
 				if(params.has("intentstart") && "sendBroadcast".equals(params.getString("intentstart"))) {
@@ -273,8 +274,8 @@ public class startApp extends CordovaPlugin {
      * for the result to return. Then only call the callback with our result data.
      */	 
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+    public void onActivityResult(final int requestCode,final int resultCode,final Intent data) {
+        //super.onActivityResult(requestCode, resultCode, data);
         
 		try {
         
@@ -303,6 +304,7 @@ public class startApp extends CordovaPlugin {
                 this.callbackContext.error(info);
             }
         } catch (Exception e) {
+        	this.callbackContext.error(e.getMessage());
             e.printStackTrace();
         }
     }
