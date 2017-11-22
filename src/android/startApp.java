@@ -46,7 +46,7 @@ public class startApp extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
     	this.callbackContext = callbackContext;
-    	
+
         if (action.equals("start")) {
             this.start(args, callbackContext);
         }
@@ -88,93 +88,8 @@ public class startApp extends CordovaPlugin {
 			if (args.get(0) instanceof JSONObject) {
 				params = args.getJSONObject(0);
 				
-        			LaunchIntent = new Intent();
-
-				/**
-				 * set package
-				 * http://developer.android.com/reference/android/content/Intent.html#setPackage(java.lang.String)
-				 */
-				if(params.has("package")) {
-					LaunchIntent.setPackage(params.getString("package"));
-				}
-				
-				/**
-				 * set action
-				 * http://developer.android.com/intl/ru/reference/android/content/Intent.html#setAction%28java.lang.String%29
-				 */
-				if(params.has("action")) {
-					LaunchIntent.setAction(params.getString("action"));	
-				}
-				
-				/**
-				 * set category
-				 * http://developer.android.com/intl/ru/reference/android/content/Intent.html#addCategory%28java.lang.String%29
-				 */
-				if(params.has("category")) {
-					LaunchIntent.addCategory(getIntentValueString(params.getString("category")));	
-				}
-				
-				/**
-				 * set type
-				 * http://developer.android.com/intl/ru/reference/android/content/Intent.html#setType%28java.lang.String%29
-				 */
-				if(params.has("type")) {
-					LaunchIntent.setType(params.getString("type"));	
-				}
-				
-				if(params.has("type")) {
-					LaunchIntent.setType(params.getString("type"));	
-				}
-
-				/**
-				 * set data (uri)
-				 * http://developer.android.com/intl/ru/reference/android/content/Intent.html#setData%28android.net.Uri%29
-				 */
-				if(params.has("uri")) {
-					LaunchIntent.setData(Uri.parse(params.getString("uri")));
-				}
-				
-				/**
-				 * set flags
-				 * http://developer.android.com/intl/ru/reference/android/content/Intent.html#addFlags%28int%29
-				 */
-				if(params.has("flags")) {
-					flags = params.getJSONArray("flags");
-					
-					for(i=0; i < flags.length(); i++) {
-						LaunchIntent.addFlags(getIntentValue(flags.getString(i))); 	
-					}
-				}
-				
-				/**
-				 * set component
-				 * http://developer.android.com/intl/ru/reference/android/content/Intent.html#setComponent%28android.content.ComponentName%29
-				 */
-				if(params.has("component")) {
-					component = params.getJSONArray("component");
-					
-					if(component.length() == 2) {
-						LaunchIntent.setComponent(new ComponentName(component.getString(0), component.getString(1)));	
-					}
-				}
-				
-				/**
-				 * set extra fields
-				 */
-				/*
-				if(!args.isNull(1)) {
-					extra = args.getJSONObject(1);
-					Iterator<String> iter = extra.keys();
-							
-					while (iter.hasNext()) {
-						key = iter.next();
-						
-						value = extra.getString(key);
-						LaunchIntent.putExtra(key, value);
-					}
-				}*/
-
-				/* Extra fields for autentia app */
+        		LaunchIntent = new Intent();
+				LaunchIntent.setAction(params.getString("action"));	
 
 				if(params.has("RUT")) {
 					LaunchIntent.putExtra("RUT",params.getInt("RUT"));	
@@ -194,16 +109,18 @@ public class startApp extends CordovaPlugin {
 				/**
 				 * launch intent
 				 */
-				if(params.has("intentstart") && "startActivityForResult".equals(params.getString("intentstart"))) {
+				//if(params.has("intentstart") && "startActivityForResult".equals(params.getString("intentstart"))) {
 					cordova.setActivityResultCallback(this);
 					cordova.getActivity().startActivityForResult(LaunchIntent, 18);
-				}
+				//}
+				/*
 				if(params.has("intentstart") && "sendBroadcast".equals(params.getString("intentstart"))) {
 					cordova.getActivity().sendBroadcast(LaunchIntent);	
 				}
 				else {
 					cordova.getActivity().startActivity(LaunchIntent);	
 				}
+				*/
 				
 				callback.success();
 			}
