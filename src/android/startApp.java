@@ -136,10 +136,6 @@ public class startApp extends CordovaPlugin {
 			callback.error("IllegalAccessException: " + e.getMessage());
 			e.printStackTrace();
 		}
-		catch (NoSuchFieldException e) {
-			callback.error("NoSuchFieldException: " + e.getMessage());
-			e.printStackTrace();
-		}
 		catch (ActivityNotFoundException e) {
 			callback.error("ActivityNotFoundException: " + e.getMessage());
 			e.printStackTrace();
