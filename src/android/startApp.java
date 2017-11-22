@@ -275,12 +275,14 @@ public class startApp extends CordovaPlugin {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        JSONObject info = new JSONObject();
-        info.put("resultado", "UNKNOWN");
-        info.put("requestCode", requestCode);
-        info.put("resultCode", resultCode);
-
-        try {
+        
+		try {
+        
+	        JSONObject info = new JSONObject();
+	        info.put("resultado", "UNKNOWN");
+	        info.put("requestCode", requestCode);
+	        info.put("resultCode", resultCode);
+	        
             if (resultCode == Activity.RESULT_OK) {
             	info.put("resultado", "OK");
                 Bundle extras = data.getExtras();
