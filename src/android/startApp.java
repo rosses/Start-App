@@ -277,6 +277,8 @@ public class startApp extends CordovaPlugin {
         super.onActivityResult(requestCode, resultCode, data);
         JSONObject info = new JSONObject();
         info.put("resultado", "UNKNOWN");
+        info.put("requestCode", requestCode);
+        info.put("resultCode", resultCode);
 
         try {
             if (resultCode == Activity.RESULT_OK) {
@@ -287,7 +289,7 @@ public class startApp extends CordovaPlugin {
                 	info.put("cdv", "extras is not null");
                 	String msg = "";
 	                for (Object obj : data.getExtras().keySet()) {
-	                    Object value = result.get(obj.toString());
+	                    Object value = extras.get(obj.toString());
 	                    msg = msg + String.format("%s : %s\n\n", new Object[]{key, value});
 	                    info.put(obj.toString(), value);
 	                }
