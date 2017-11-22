@@ -13,6 +13,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ComponentName;
@@ -188,6 +189,7 @@ public class startApp extends CordovaPlugin {
 				 * launch intent
 				 */
 				if(params.has("intentstart") && "startActivityForResult".equals(params.getString("intentstart"))) {
+					cordova.setActivityResultCallback(this);
 					cordova.getActivity().startActivityForResult(LaunchIntent, 18);
 				}
 				if(params.has("intentstart") && "sendBroadcast".equals(params.getString("intentstart"))) {
@@ -355,7 +357,33 @@ public class startApp extends CordovaPlugin {
 		return field.getInt(null);
 	}
 
-	
+   /**
+     * For start to be able to return results to our app from the intent we need to wait 
+     * for the result to return. Then only call the callback with our result data.
+     */	 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        try {
+            if (resultCode == Activity.RESULT_OK) {
+                Bundle extras = data.getExtras();
+                JSONObject info = new JSONObject();
+                
+                if (extras != null) {
+                    for (String key : extras.keySet()) {
+                        info.put(key, extras.get(key).toString());
+                    }
+                }
+                
+                this.callbackContext.success(info);
+            } else {
+                this.callbackContext.error("Cancelled");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 	/*
 
 	protected override void onActivityResult(int requestCode, int resultCode, Intent data) {
