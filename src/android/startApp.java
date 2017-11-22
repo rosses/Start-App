@@ -372,6 +372,8 @@ public class startApp extends CordovaPlugin {
             Log.d(TAG, String.format("%s : %s", new Object[]{key, value}));
         }
 
+        return;
+
 	}
 	
 }
