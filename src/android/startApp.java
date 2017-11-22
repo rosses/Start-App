@@ -356,7 +356,7 @@ public class startApp extends CordovaPlugin {
 	}
 
 	
-	
+	/*
 
 	protected override void onActivityResult(int requestCode, int resultCode, Intent data) {
 		Log.i(TAG, "requestCode");
@@ -375,5 +375,6 @@ public class startApp extends CordovaPlugin {
         return;
 
 	}
+	*/
 	
 }
