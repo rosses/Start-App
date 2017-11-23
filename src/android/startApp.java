@@ -193,15 +193,13 @@ public class startApp extends CordovaPlugin {
 						Object value = extra.get(key);
 						String keyStr = parseExtraName(key);
 
-						Log.e(TAG, "KEY: "+keyStr+" - VALUE: "+value.toString());
-
  						if (value != null) {
 
  							if (keyStr == "DV") {
- 								LaunchIntent.putExtra("DV", params.getString("DV").charAt(0));	
+ 								LaunchIntent.putExtra("DV", value.charAt(0));	
  							}
  							else if (keyStr == "RUT") {
- 								LaunchIntent.putExtra("RUT", params.getInt("RUT"));	
+ 								LaunchIntent.putExtra("RUT", Integer.parseInt(value));	
  							}
  							else {
 	 							if (value instanceof Number)
