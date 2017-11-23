@@ -196,10 +196,10 @@ public class startApp extends CordovaPlugin {
  						if (value != null) {
 
  							if (keyStr == "DV") {
- 								LaunchIntent.putExtra("DV", value.charAt(0));	
+ 								LaunchIntent.putExtra("DV", value.toString().charAt(0));	
  							}
  							else if (keyStr == "RUT") {
- 								LaunchIntent.putExtra("RUT", Integer.parseInt(value));	
+ 								LaunchIntent.putExtra("RUT", Integer.parseInt(value.toString()));	
  							}
  							else {
 	 							if (value instanceof Number)
