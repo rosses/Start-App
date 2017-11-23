@@ -196,11 +196,9 @@ public class startApp extends CordovaPlugin {
  						if (value != null) {
 
  							if ("DV".equals(keyStr)) {
- 								Log.e(TAG, "DV: "+keyStr+" - VALUE: "+value.toString());
  								LaunchIntent.putExtra("DV", value.toString().charAt(0));	
  							}
  							else if ("RUT".equals(keyStr)) {
- 								Log.e(TAG, "RUT: "+keyStr+" - VALUE: "+value.toString());
  								LaunchIntent.putExtra("RUT", Integer.parseInt(value.toString()));	
  							}
  							else {
@@ -221,7 +219,7 @@ public class startApp extends CordovaPlugin {
 				 * launch intent
 				 */
 				if(params.has("intentstart") && "startActivityForResult".equals(params.getString("intentstart"))) {
-					cordova.startActivityForResult((CordovaPlugin) this, LaunchIntent, 18);
+					cordova.startActivityForResult((CordovaPlugin) this, LaunchIntent, 1007);
 				} else if (params.has("intentstart") && "sendBroadcast".equals(params.getString("intentstart"))) {
 						cordova.getActivity().sendBroadcast(LaunchIntent);
 						callback.success();
@@ -432,7 +430,8 @@ public class startApp extends CordovaPlugin {
 
 			Log.d(TAG, String.format("%s : %s", key, value));
 			info.put(key, value);
-		}
+			
+			}
 			this.callbackContext.success(info);
 		} catch(JSONException e) {
 			this.callbackContext.error(e.getMessage());
