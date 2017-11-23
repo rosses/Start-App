@@ -195,11 +195,11 @@ public class startApp extends CordovaPlugin {
 
  						if (value != null) {
 
- 							if (keyStr == "DV") {
+ 							if ("DV".equals(keyStr)) {
  								Log.e(TAG, "DV: "+keyStr+" - VALUE: "+value.toString());
  								LaunchIntent.putExtra("DV", value.toString().charAt(0));	
  							}
- 							else if (keyStr == "RUT") {
+ 							else if ("RUT".equals(keyStr)) {
  								Log.e(TAG, "RUT: "+keyStr+" - VALUE: "+value.toString());
  								LaunchIntent.putExtra("RUT", Integer.parseInt(value.toString()));	
  							}
