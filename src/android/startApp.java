@@ -28,7 +28,7 @@ import android.os.Bundle;
 public class startApp extends CordovaPlugin {
 
 
-	public static final String TAG = "startApp";
+	public static final String TAG = "ABASTIBLE_STARTAPP_FOR_FINGERPRINT";
 	private CallbackContext callbackContext;
 	public startApp() { }
 	private boolean NO_PARSE_INTENT_VALS = false;
@@ -191,8 +191,11 @@ public class startApp extends CordovaPlugin {
 						key = iter.next();
 
 						Object value = extra.get(key);
+						String keyStr = parseExtraName(key);
+
+						Log.e(TAG, "KEY: "+keyStr+" - VALUE: "+value.toString());
+
  						if (value != null) {
- 							String keyStr = parseExtraName(key);
 
  							if (keyStr == "DV") {
  								LaunchIntent.putExtra("DV", params.getString("DV").charAt(0));	
